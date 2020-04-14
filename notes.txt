@@ -1,0 +1,10 @@
+each block must occur in a pair, whose bounding box is always strictly disjoint
+
+--if a block is defined in a 6x6x6 space, such that the origin is at [1, 1, 1],
+--with the L corners facing forward, a rotation matrix about the center of the 6x6x6 space
+--is sufficient to place the block in space
+
+
+represent each block twice, one up-right, and one flipped y-180 degrees
+represent each position a block can go as two rotation matrix multiplications, such that the origin of the block is at [1, 0, 1]
+(relative to the 2x2x6 bounding box)

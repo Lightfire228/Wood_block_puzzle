@@ -1,0 +1,16 @@
+## ##
+## ##
+## ##
+## ##
+## ##
+## ##
+
+[2x6 grid] [space] [2x6 grid]
+
+# is filled
+. is empty
+
+left  grid is back  face
+right grid is front face
+
+front face is facing the center of the solved puzzle
