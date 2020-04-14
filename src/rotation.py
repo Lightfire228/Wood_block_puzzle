@@ -1,6 +1,6 @@
-import utilities
+from classes.point import Point
 
-from utilities import Point
+import utilities
 
 def identity(point):
     return point
@@ -63,7 +63,7 @@ def x_counterclockwise(point):
     )
 
 #region test
-def apply_point_rotation(rotation, point, center=Point.ZERO):
+def apply_point_rotation(rotation, point, center=Point(0, 0, 0)):
     centered_point = point.translate(center, True)
     rotated_point  = rotation(centered_point)
 
@@ -134,13 +134,13 @@ def test():
 
     t = _gen_test_matrix(size)
 
-    print('OG ===>')
-    print(utilities.to_string_3d_matrix(t))
+    print(f'>>>>>>>>>>>> OG ===>')
+    print(f'>>>>>>>>>>>> ', utilities.to_string_3d_matrix(t))
 
     r = rotate_3d_matrix(x_counterclockwise, t)
 
-    print('\nNEW ###>')
-    print(utilities.to_string_3d_matrix(r))
+    print(f'>>>>>>>>>>>> \nNEW ###>')
+    print(f'>>>>>>>>>>>> ', utilities.to_string_3d_matrix(r))
 
 if __name__ == "__main__":
     test()

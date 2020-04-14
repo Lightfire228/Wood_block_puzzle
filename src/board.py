@@ -1,9 +1,13 @@
 from constants import *
-from classes   import *
-from utilities import Point
+
+from classes.point    import Point
+from classes.piece    import Piece
+from classes.position import Position
 
 import rotation
 import utilities
+
+print(f'>>>>>>>>>>>> s {Point}')
 
 def start():
 

@@ -1,8 +1,9 @@
 import utilities
 import rotation
 
-from utilities import Point
-from classes   import *
+from classes.piece    import Piece
+from classes.point    import Point
+from classes.position import Position
 
 BOARD_SIZE      = 6
 BOARD_CENTER    = Point(2.5, 2.5, 2.5)
@@ -46,10 +47,11 @@ POSITIONS = [
     POSITION_5,
 ]
 
+if __name__ == "__main__":
+    pass
+    # print(f'>>>>>>>>>>>> testing')
+    # dim = Piece.get_dimensions()
+    # rotated_dim = POSITION_5.apply_point_rotations(dim, Point.ZERO)
 
-print('testing')
-dim = Piece.get_dimensions()
-rotated_dim = POSITION_5.apply_point_rotations(dim, Point.ZERO)
-
-print('rotated dim', rotated_dim)
-print('pos 5 origin', POSITION_5.origin)
+    # print(f'>>>>>>>>>>>> rotated dim', rotated_dim)
+    # print(f'>>>>>>>>>>>> pos 5 origin', POSITION_5.origin)
