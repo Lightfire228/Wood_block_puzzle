@@ -2,92 +2,73 @@ import utilities
 
 from utilities import Point
 
-identity = [
-    [ 1,  0,  0],
-    [ 0,  1,  0],
-    [ 0,  0,  1],
-]
+def identity(point):
+    return point
 
-## 
-# Because everything is [z, y, x], I didn't want to swap the arguments around
-# in the multiplication function.  So, instead, I name the mathematical x-axis
-# rotation matrices as z-axis rotation matrices and vise-versa.  So, in effect,
-# the `z_clockwise` will still rotate about the z-axis, if you look up the rotation
-# matrix definitions, they'll be swapped
+def z_clockwise(point):
+    return Point(
+        point.Z,
+        -point.X,
+        point.Y,
+    )
 
-#         # the x-rotation matrix                     
-#                                                     
-#          [1,       0,      0]   [z]  # the inverted    
-#  Rz(θ) = |0,  cos(θ), sin(θ)| * |y|  # position vector 
-#          [0, -sin(θ), cos(θ)]   [x]                    
-#                                                     
+def z_counterclockwise(point):
+    return Point(
+        point.Z,
+        point.X,
+        -point.Y,
+    )
 
+def z_180(point):
+    return Point(
+        point.Z,
+        -point.Y,
+        -point.X,
+    )
 
-# mathematically the x-clockwise
-z_clockwise = [
-    [ 1,  0,  0],
-    [ 0,  0, -1],
-    [ 0,  1,  0],
-]
+def y_clockwise(point):
+    return Point(
+        point.X,
+        point.Y,
+        -point.Z,
+    )
 
-# mathematically the x-counterclockwise
-z_counterclockwise = [
-    [ 1,  0,  0],
-    [ 0,  0,  1],
-    [ 0, -1,  0],
-]
+def y_counterclockwise(point):
+    return Point(
+        -point.X,
+        point.Y,
+        point.Z,
+    )
 
-# mathematically the x-180
-z_180 = [
-    [ 1,  0,  0],
-    [ 0, -1,  0],
-    [ 0,  0, -1],
-]
-
-y_clockwise = [
-    [ 0,  0,  1], 
-    [ 0,  1,  0], 
-    [-1,  0,  0], 
-]
-
-y_counterclockwise = [
-    [ 0,  0, -1], 
-    [ 0,  1,  0], 
-    [ 1,  0,  0], 
-]
-
-y_180 = [
-    [-1,  0,  0], 
-    [ 0,  1,  0], 
-    [ 0,  0, -1], 
-]
-
-# mathematically the z-counterclockwise
-x_clockwise = [
-    [ 0, -1,  0], 
-    [ 1,  0,  0], 
-    [ 0,  0,  1], 
-]
-
-# mathematically the z-counterclockwise
-x_counterclockwise = [
-    [ 0,  1,  0], 
-    [-1,  0,  0], 
-    [ 0,  0,  1], 
-]
+def y_180(point):
+    return Point(
+        -point.Z,
+        point.Y,
+        -point.X,
+    )
 
 
-def apply_point_rotation(rotation_matrix, point, center=Point.ZERO):
+def x_clockwise(point):
+    return Point(
+        -point.Y,
+        point.Z,
+        point.X
+    )
 
-    translated_point = point.translate(center, True)
+def x_counterclockwise(point):
+    return Point(
+        point.Y,
+        -point.Z,
+        point.X
+    )
 
-    point_matrix = utilities.convert_to_vertical_matrix(translated_point.to_vector())
+#region test
+def apply_point_rotation(rotation, point, center=Point.ZERO):
+    centered_point = point.translate(center, True)
+    rotated_point  = rotation(centered_point)
 
-    rotated_matrix = utilities.matrix_multiplication(rotation_matrix, point_matrix)
+    return rotated_point.translate(center)
 
-    rotated_vector = utilities.convert_to_array(rotated_matrix)
-
-    return Point(*rotated_vector).translate(center)
 
 
 def rotate_3d_matrix(rotation_matrix, matrix, center=None):
@@ -146,17 +127,17 @@ def _gen_test_matrix(size):
         t[z][y][x] = i
     
     return t
-
+#endregion
 def test():
 
-    size = 2
+    size = 3
 
     t = _gen_test_matrix(size)
 
     print('OG ===>')
     print(utilities.to_string_3d_matrix(t))
 
-    r = rotate_3d_matrix(identity, t)
+    r = rotate_3d_matrix(x_counterclockwise, t)
 
     print('\nNEW ###>')
     print(utilities.to_string_3d_matrix(r))
