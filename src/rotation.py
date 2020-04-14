@@ -5,14 +5,14 @@ import utilities
 def identity(point):
     return point
 
-def z_clockwise(point):
+def z_counterclockwise(point):
     return Point(
         point.Z,
         -point.X,
         point.Y,
     )
 
-def z_counterclockwise(point):
+def z_clockwise(point):
     return Point(
         point.Z,
         point.X,
@@ -26,14 +26,14 @@ def z_180(point):
         -point.X,
     )
 
-def y_clockwise(point):
+def y_counterclockwise(point):
     return Point(
         point.X,
         point.Y,
         -point.Z,
     )
 
-def y_counterclockwise(point):
+def y_clockwise(point):
     return Point(
         -point.X,
         point.Y,
@@ -48,14 +48,14 @@ def y_180(point):
     )
 
 
-def x_clockwise(point):
+def x_counterclockwise(point):
     return Point(
         -point.Y,
         point.Z,
         point.X
     )
 
-def x_counterclockwise(point):
+def x_clockwise(point):
     return Point(
         point.Y,
         -point.Z,
@@ -109,7 +109,7 @@ def rotate_3d_matrix(rotation_matrix, matrix, center=None):
                 mY = int(mapped_point.Y)
                 mX = int(mapped_point.X)
 
-                result[z][y][x] = matrix[mZ][mY][mX]
+                result[mZ][mY][mX] = matrix[z][y][x]
 
     return result
 
