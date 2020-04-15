@@ -19,8 +19,8 @@ class Piece():
     def get_dimensions():
         return Point(Piece.Z, Piece.Y, Piece.X)
 
-    def __init__(self, piece_name, file_name, board_size, is_inverted=False):
-        self.piece_name  = piece_name
+    def __init__(self, name, file_name, board_size, is_inverted=False):
+        self.name        = name
         self.file_name   = file_name
         self.board_size  = board_size
         self.is_inverted = is_inverted

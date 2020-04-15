@@ -10,7 +10,43 @@ import utilities
 
 def start():
 
-    board = utilities.generate_3d_matrix(False, BOARD_SIZE)
+    board_matrix = utilities.generate_3d_matrix(False, BOARD_SIZE)
+
+    insert_piece(board_matrix, PIECE_00, POSITION_0)
+
+    return solve(board_matrix, PIECES[:], POSITIONS[:])
+
+
+def solve(board_matrix, available_pieces, available_positions):
+
+    if len(available_positions) == 0:
+        return True
+    
+    position    = available_positions.pop()
+    used_pieces = []
+
+    while len(available_pieces) > 0:
+        piece = available_pieces.pop()
+
+        if not check_collides(board_matrix, piece, position):
+
+            insert_piece(board_matrix, piece, position)
+            if solve(board_matrix, [*used_pieces, *available_pieces], available_positions[:]):
+                return True
+            else:
+                remove_piece(board_matrix, piece, position)
+            
+        used_pieces.append(piece)
+    
+    return False
+
+def remove_piece(board_matrix, piece, position):
+    position.set_piece(None)
+
+    rotated_piece_matrix = position.apply_matrix_rotations(piece)
+
+    for point in walk_position_indices(position):
+        board_matrix[point.Z][point.Y][point.X] = False
 
 def insert_piece(board_matrix, piece, position):
 
@@ -20,7 +56,6 @@ def insert_piece(board_matrix, piece, position):
 
     for point in walk_position_indices(position):
         board_matrix[point.Z][point.Y][point.X] = rotated_piece_matrix[point.Z][point.Y][point.X]
-
 
 def check_collides(board_matrix, piece, position):
 
