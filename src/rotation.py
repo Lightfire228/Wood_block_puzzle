@@ -63,7 +63,6 @@ def x_clockwise(point):
         point.X
     )
 
-#region test
 def apply_point_rotation(rotation, point, center=None):
 
     center = BOARD_CENTER if center == None else center
@@ -71,7 +70,7 @@ def apply_point_rotation(rotation, point, center=None):
     centered_point = point.translate(center, True)
     rotated_point  = rotation(centered_point)
 
-    return rotated_point.translate(center)
+    return rotated_point.translate(center).to_int_point()
 
 def rotate_3d_matrix(rotation_matrix, matrix, center=None):
     
@@ -96,15 +95,13 @@ def rotate_3d_matrix(rotation_matrix, matrix, center=None):
 
                 mapped_point = apply_point_rotation(rotation_matrix, Point(z, y, x), center)
 
-                mZ = int(mapped_point.Z)
-                mY = int(mapped_point.Y)
-                mX = int(mapped_point.X)
+                mZ = mapped_point.Z
+                mY = mapped_point.Y
+                mX = mapped_point.X
 
                 result[mZ][mY][mX] = matrix[z][y][x]
 
     return result
-
-
 
 def _gen_test_matrix(size):
 
@@ -118,7 +115,7 @@ def _gen_test_matrix(size):
         t[z][y][x] = i
     
     return t
-#endregion
+
 def test():
 
     size = 6

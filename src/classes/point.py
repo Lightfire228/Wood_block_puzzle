@@ -24,6 +24,13 @@ class Point():
             abs(self.Y),
             abs(self.X),
         )
+    
+    def to_int_point(self):
+        return Point(
+            int(self.Z),
+            int(self.Y),
+            int(self.X),
+        )
 
     def __str__(self):
         return f'({self.Z}, {self.Y}, {self.X})'
