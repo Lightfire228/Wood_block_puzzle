@@ -21,13 +21,25 @@ PIECE_09_INV = Piece('09 inverted', '09.txt', BOARD_SIZE, True)
 PIECE_10     = Piece('10',          '10.txt', BOARD_SIZE)
 PIECE_10_INV = Piece('10 inverted', '10.txt', BOARD_SIZE, True)
 
+# add references to their inversions
+PIECE_06    .inversion = PIECE_06_INV
+PIECE_06_INV.inversion = PIECE_06
+PIECE_07    .inversion = PIECE_07_INV
+PIECE_07_INV.inversion = PIECE_07
+PIECE_08    .inversion = PIECE_08_INV
+PIECE_08_INV.inversion = PIECE_08
+PIECE_09    .inversion = PIECE_09_INV
+PIECE_09_INV.inversion = PIECE_09
+PIECE_10    .inversion = PIECE_10_INV
+PIECE_10_INV.inversion = PIECE_10
+
 # intentionally left out piece 00
 PIECES = [
-    PIECE_06, PIECE_06_INV,
-    PIECE_07, PIECE_07_INV,
-    PIECE_08, PIECE_08_INV,
-    PIECE_09, PIECE_09_INV,
-    PIECE_10, PIECE_10_INV,
+    PIECE_06,
+    PIECE_07,
+    PIECE_08,
+    PIECE_09,
+    PIECE_10,
 ]
 
 # see `numerical_scheme.jpg` for an explanation of where these positions physically line up

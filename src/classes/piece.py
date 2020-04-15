@@ -28,6 +28,8 @@ class Piece():
         self.piece_matrix  = self._get_piece_matrix()
         self.padded_matrix = self._get_padded_matrix()
 
+        self.inversion = None
+
     def _get_padded_matrix(self):
 
         blank_matrix = utilities.generate_3d_matrix(False, self.board_size)

@@ -35,8 +35,12 @@ def solve(board_matrix, available_pieces, available_positions):
                 return True
             else:
                 remove_piece(board_matrix, piece, position)
-            
-        used_pieces.append(piece)
+
+        # run code against inverted piece as well, while still treating them as one physical piece
+        if not piece.is_inverted:
+            available_pieces.append(piece.inversion)
+        else:
+            used_pieces.append(piece.inversion)
     
     return False
 
