@@ -2,6 +2,7 @@ from classes.point import Point
 
 import read
 import utilities
+import rotation
 
 class Piece():
 
@@ -37,8 +38,7 @@ class Piece():
 
         piece_matrix = read.read_block(self.file_name)
 
-        #TODO:
-        # if self.is_inverted:
-        #     piece_matrix = rotation.rotate_3d_matrix(rotation.z_)
+        if self.is_inverted:
+            piece_matrix = rotation.rotate_3d_matrix(rotation.z_180, piece_matrix)
 
 

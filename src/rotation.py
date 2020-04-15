@@ -1,4 +1,5 @@
 from classes.point import Point
+from constants     import BOARD_CENTER
 
 import utilities
 
@@ -63,7 +64,7 @@ def x_clockwise(point):
     )
 
 #region test
-def apply_point_rotation(rotation, point, center=Point.ZERO):
+def apply_point_rotation(rotation, point, center=BOARD_CENTER):
     centered_point = point.translate(center, True)
     rotated_point  = rotation(centered_point)
 
@@ -71,22 +72,11 @@ def apply_point_rotation(rotation, point, center=Point.ZERO):
 
 
 
-def rotate_3d_matrix(rotation_matrix, matrix, center=None):
-    """
-        center defaults to the center of the 3d matrix
-    """
-
+def rotate_3d_matrix(rotation_matrix, matrix):
     
     z_len = len(matrix)
     y_len = len(matrix[0])
     x_len = len(matrix[0][0])
-
-    if center == None:
-        center = Point(
-            (z_len -1 ) / 2,
-            (y_len -1 ) / 2,
-            (x_len -1 ) / 2,
-        )
 
     result = [
         [
@@ -103,7 +93,7 @@ def rotate_3d_matrix(rotation_matrix, matrix, center=None):
         for y in range(y_len):
             for x in range(x_len):
 
-                mapped_point = apply_point_rotation(rotation_matrix, Point(z, y, x), center)
+                mapped_point = apply_point_rotation(rotation_matrix, Point(z, y, x))
                 
                 mZ = int(mapped_point.Z)
                 mY = int(mapped_point.Y)

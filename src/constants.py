@@ -31,12 +31,12 @@ PIECES = [
 ]
 
 # see `numerical_scheme.jpg` for an explanation of where these positions physically line up
-POSITION_0 = Position('0', rotation.identity,           rotation.identity,           INSERTION_POINT, BOARD_CENTER)
-POSITION_1 = Position('1', rotation.y_180,              rotation.identity,           INSERTION_POINT, BOARD_CENTER)
-POSITION_2 = Position('2', rotation.z_counterclockwise, rotation.x_counterclockwise, INSERTION_POINT, BOARD_CENTER)
-POSITION_3 = Position('3', rotation.z_counterclockwise, rotation.x_clockwise,        INSERTION_POINT, BOARD_CENTER)
-POSITION_4 = Position('4', rotation.z_counterclockwise, rotation.y_counterclockwise, INSERTION_POINT, BOARD_CENTER)
-POSITION_5 = Position('5', rotation.z_counterclockwise, rotation.y_clockwise,        INSERTION_POINT, BOARD_CENTER)
+POSITION_0 = Position('0', rotation.identity,           rotation.identity,           INSERTION_POINT)
+POSITION_1 = Position('1', rotation.y_180,              rotation.identity,           INSERTION_POINT)
+POSITION_2 = Position('2', rotation.z_counterclockwise, rotation.x_counterclockwise, INSERTION_POINT)
+POSITION_3 = Position('3', rotation.z_counterclockwise, rotation.x_clockwise,        INSERTION_POINT)
+POSITION_4 = Position('4', rotation.z_counterclockwise, rotation.y_counterclockwise, INSERTION_POINT)
+POSITION_5 = Position('5', rotation.z_counterclockwise, rotation.y_clockwise,        INSERTION_POINT)
 
 # intentionally left out
 POSITIONS = [
