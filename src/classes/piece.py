@@ -1,5 +1,7 @@
 from classes.point import Point
 
+from constants import PIECE_CENTER
+
 import read
 import utilities
 import rotation
@@ -22,7 +24,7 @@ class Piece():
         self.board_size  = board_size
         self.is_inverted = is_inverted
 
-        self.piece_matrix = read.read_block(file_name)
+        self.piece_matrix  = self._get_piece_matrix()
         self.padded_matrix = self._get_padded_matrix()
 
     def _get_padded_matrix(self):
@@ -40,6 +42,10 @@ class Piece():
         piece_matrix = read.read_block(self.file_name)
 
         if self.is_inverted:
-            piece_matrix = rotation.rotate_3d_matrix(rotation.z_180, piece_matrix)
+            piece_matrix = rotation.rotate_3d_matrix(rotation.z_180, piece_matrix, PIECE_CENTER)
+        
+        return piece_matrix
+        
+
 
 

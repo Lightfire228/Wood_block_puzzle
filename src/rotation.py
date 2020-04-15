@@ -73,9 +73,7 @@ def apply_point_rotation(rotation, point, center=None):
 
     return rotated_point.translate(center)
 
-
-
-def rotate_3d_matrix(rotation_matrix, matrix):
+def rotate_3d_matrix(rotation_matrix, matrix, center=None):
     
     z_len = len(matrix)
     y_len = len(matrix[0])
@@ -96,8 +94,8 @@ def rotate_3d_matrix(rotation_matrix, matrix):
         for y in range(y_len):
             for x in range(x_len):
 
-                mapped_point = apply_point_rotation(rotation_matrix, Point(z, y, x))
-                
+                mapped_point = apply_point_rotation(rotation_matrix, Point(z, y, x), center)
+
                 mZ = int(mapped_point.Z)
                 mY = int(mapped_point.Y)
                 mX = int(mapped_point.X)
