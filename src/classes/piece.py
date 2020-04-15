@@ -1,6 +1,7 @@
 from classes.point import Point
 
 from constants import PIECE_CENTER
+from constants import INSERTION_POINT
 
 import read
 import utilities
@@ -31,11 +32,21 @@ class Piece():
 
         blank_matrix = utilities.generate_3d_matrix(False, self.board_size)
 
+        dim   = Piece.DIMENSIONS
+        start = INSERTION_POINT
+
         # hack away!
-        for z in range(len(self.piece_matrix)):
-            for y in range(len(self.piece_matrix[z])):
-                for x in range(len(self.piece_matrix[z][y])):
-                    blank_matrix[z][y][x] = self.piece_matrix[z][y][x]
+        for z in range(dim.Z):
+            for y in range(dim.Y):
+                for x in range(dim.X):
+
+                    z_board = start.Z + z
+                    y_board = start.Y + y
+                    x_board = start.X + x
+
+                    blank_matrix[z_board][y_board][x_board] = self.piece_matrix[z][y][x]
+
+        return blank_matrix
 
     def _get_piece_matrix(self):
 
