@@ -1,4 +1,5 @@
-from constants import *
+from constants       import *
+from board_constants import *
 
 from classes.point    import Point
 from classes.piece    import Piece

@@ -6,10 +6,11 @@ import rotation
 
 class Piece():
 
-    # size constants
-    Z = 2
-    Y = 6
-    X = 2
+    DIMENSIONS = Point(
+        2,
+        6,
+        2,
+    )
 
     @staticmethod
     def get_dimensions():

@@ -64,7 +64,10 @@ def x_clockwise(point):
     )
 
 #region test
-def apply_point_rotation(rotation, point, center=BOARD_CENTER):
+def apply_point_rotation(rotation, point, center=None):
+
+    center = BOARD_CENTER if center == None else center
+
     centered_point = point.translate(center, True)
     rotated_point  = rotation(centered_point)
 
