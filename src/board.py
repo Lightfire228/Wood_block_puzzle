@@ -7,8 +7,6 @@ from classes.position import Position
 import rotation
 import utilities
 
-print(f'>>>>>>>>>>>> s {Point}')
-
 def start():
 
     board = utilities.generate_3d_matrix(False, BOARD_SIZE)

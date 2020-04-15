@@ -40,5 +40,3 @@ class Point():
 # python be weird
 # https://stackoverflow.com/a/2546626/2716305
 Point.ZERO = Point(0, 0, 0)
-
-print(f'>>>>>>>>>>>> {Point.ZERO}')

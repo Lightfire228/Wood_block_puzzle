@@ -7,7 +7,7 @@ from classes.position import Position
 
 BOARD_SIZE      = 6
 BOARD_CENTER    = Point(2.5, 2.5, 2.5)
-INSERTION_POINT = Point(1, 0, 1)
+INSERTION_POINT = Point(1, 0, 2)
 
 PIECE_00     = Piece('00',          '00.txt', BOARD_SIZE)
 PIECE_06     = Piece('06',          '06.txt', BOARD_SIZE)
@@ -46,12 +46,3 @@ POSITIONS = [
     POSITION_4,
     POSITION_5,
 ]
-
-if __name__ == "__main__":
-    pass
-    # print(f'>>>>>>>>>>>> testing')
-    # dim = Piece.get_dimensions()
-    # rotated_dim = POSITION_5.apply_point_rotations(dim, Point.ZERO)
-
-    # print(f'>>>>>>>>>>>> rotated dim', rotated_dim)
-    # print(f'>>>>>>>>>>>> pos 5 origin', POSITION_5.origin)

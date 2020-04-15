@@ -63,7 +63,7 @@ def x_clockwise(point):
     )
 
 #region test
-def apply_point_rotation(rotation, point, center=Point(0, 0, 0)):
+def apply_point_rotation(rotation, point, center=Point.ZERO):
     centered_point = point.translate(center, True)
     rotated_point  = rotation(centered_point)
 
@@ -91,7 +91,7 @@ def rotate_3d_matrix(rotation_matrix, matrix, center=None):
     result = [
         [
             [
-                -2
+                0
                 for z in y
             ]
             for y in z
@@ -117,7 +117,7 @@ def rotate_3d_matrix(rotation_matrix, matrix, center=None):
 
 def _gen_test_matrix(size):
 
-    t = utilities.generate_3d_matrix(-1, size)
+    t = utilities.generate_3d_matrix(0, size)
 
     for i in range(size**3):
         z = (i // size) // size
@@ -130,17 +130,17 @@ def _gen_test_matrix(size):
 #endregion
 def test():
 
-    size = 3
+    size = 6
 
     t = _gen_test_matrix(size)
 
     print(f'>>>>>>>>>>>> OG ===>')
-    print(f'>>>>>>>>>>>> ', utilities.to_string_3d_matrix(t))
+    print(utilities.to_string_3d_matrix(t))
 
-    r = rotate_3d_matrix(x_counterclockwise, t)
+    r = rotate_3d_matrix(z_counterclockwise, t)
 
     print(f'>>>>>>>>>>>> \nNEW ###>')
-    print(f'>>>>>>>>>>>> ', utilities.to_string_3d_matrix(r))
+    print(utilities.to_string_3d_matrix(r))
 
 if __name__ == "__main__":
     test()
