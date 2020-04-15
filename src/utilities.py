@@ -17,7 +17,8 @@ def to_string_3d_matrix(matrix):
     return s_cube([
         s_grid([
             s_row([
-                str(r) 
+                # str(r)
+                (str(r) + ' ')[:5]
                 for r in row
             ]) 
             for row in grid

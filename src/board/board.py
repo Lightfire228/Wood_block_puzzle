@@ -28,13 +28,14 @@ def solve(board_matrix, available_pieces, available_positions):
     while len(available_pieces) > 0:
         piece = available_pieces.pop()
 
-        if not check_collides(board_matrix, piece, position):
+        clone = deep_clone_board(board_matrix)
+        if not check_collides(clone, piece, position):
 
-            insert_piece(board_matrix, piece, position)
-            if solve(board_matrix, [*used_pieces, *available_pieces], available_positions[:]):
+            insert_piece(clone, piece, position)
+            if solve(clone, [*used_pieces, *available_pieces], available_positions[:]):
                 return True
             else:
-                remove_piece(board_matrix, piece, position)
+                remove_piece(piece, position)
 
         # run code against inverted piece as well, while still treating them as one physical piece
         if not piece.is_inverted:
@@ -44,13 +45,8 @@ def solve(board_matrix, available_pieces, available_positions):
     
     return False
 
-def remove_piece(board_matrix, piece, position):
+def remove_piece(piece, position):
     position.set_piece(None)
-
-    rotated_piece_matrix = position.apply_matrix_rotations(piece)
-
-    for point in walk_position_indices(position):
-        board_matrix[point.Z][point.Y][point.X] = False
 
 def insert_piece(board_matrix, piece, position):
 
@@ -89,6 +85,17 @@ def walk_position_indices(position):
             for x in x_range:
                 yield Point(z, y, x)
 
+def deep_clone_board(board_matrix):
+    return [
+        [
+            [
+                x
+                for x in y
+            ]
+            for y in z
+        ] 
+        for z in board_matrix
+    ]
 
 def _get_range(origin, dim):
 
